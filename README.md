@@ -1,1 +1,1 @@
-# 3D-amusment-park
+# 3D Amusement Park
