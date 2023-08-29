@@ -1,0 +1,94 @@
+
+void SkyBoxCube()
+{
+	float P1[] = { 1, -1,  1 };
+	float P2[] = { 1, -1, -1 };
+	float P3[] = { -1,-1, -1 };
+	float P4[] = { -1,-1,  1 };
+	float P5[] = { 1, 1,  1 };
+	float P6[] = { 1, 1, -1 };
+	float P7[] = { -1, 1, -1 };
+	float P8[] = { -1, 1,  1 };
+	glColor3f(1, 1, 1);
+	//bottom
+	glBindTexture(GL_TEXTURE_2D, tex[0]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1, 0); glVertex3fv(P1);
+	glTexCoord2f(0, 0); glVertex3fv(P2);
+	glTexCoord2f(0, 1); glVertex3fv(P3);
+	glTexCoord2f(1, 1); glVertex3fv(P4);
+	glEnd();
+	//top
+	glBindTexture(GL_TEXTURE_2D, tex[1]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 1); glVertex3fv(P6);
+	glTexCoord2f(1, 1); glVertex3fv(P5);
+	glTexCoord2f(1, 0); glVertex3fv(P8);
+	glTexCoord2f(0, 0); glVertex3fv(P7);
+	glEnd();
+	//right
+	glBindTexture(GL_TEXTURE_2D, tex[2]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1, 1); glVertex3fv(P1);//1
+	glTexCoord2f(1, 0); glVertex3fv(P5);//2
+	glTexCoord2f(0, 0); glVertex3fv(P6);//6
+	glTexCoord2f(0, 1); glVertex3fv(P2);//5
+	glEnd();
+	//front
+	glBindTexture(GL_TEXTURE_2D, tex[3]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1, 1); glVertex3fv(P2);//2
+	glTexCoord2f(1, 0); glVertex3fv(P6);//3
+	glTexCoord2f(0, 0); glVertex3fv(P7);//7
+	glTexCoord2f(0, 1); glVertex3fv(P3);//6
+	glEnd();
+	//left
+	glBindTexture(GL_TEXTURE_2D, tex[4]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1, 1); glVertex3fv(P3);//3
+	glTexCoord2f(1, 0); glVertex3fv(P7);//4
+	glTexCoord2f(0, 0); glVertex3fv(P8);//8
+	glTexCoord2f(0, 1); glVertex3fv(P4);//7
+	glEnd();
+	//back
+	glBindTexture(GL_TEXTURE_2D, tex[5]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1, 1); glVertex3fv(P4);//4
+	glTexCoord2f(1, 0); glVertex3fv(P8);//1
+	glTexCoord2f(0, 0); glVertex3fv(P5);//5
+	glTexCoord2f(0, 1); glVertex3fv(P1);//8
+	glEnd();
+}
+
+	void SkyBoxFunc()
+	{
+		glEnable(GL_TEXTURE_2D);
+		glDisable(GL_DEPTH_TEST);
+		glDisable(GL_LIGHTING);
+		SkyBoxCube();
+		glEnable(GL_DEPTH_TEST);
+		glDisable(GL_TEXTURE_2D);
+		glEnable(GL_LIGHTING);
+	}
+
+
+
+	//bluefreeze //depression-pass //glacier //nightwalker-ftd
+	tex[0] = LoadTexture("Data/glacier_dn.tga");
+	tex[1] = LoadTexture("Data/glacier_up.tga");
+	tex[2] = LoadTexture("Data/glacier_rt.tga");
+	tex[3] = LoadTexture("Data/glacier_bk.tga");
+	tex[4] = LoadTexture("Data/glacier_lf.tga");
+	tex[5] = LoadTexture("Data/glacier_ft.tga");
+
+	tex[0] = LoadTexture("Data/negy.jpg");
+	tex[1] = LoadTexture("Data/posy.jpg");
+	tex[2] = LoadTexture("Data/posx.jpg");
+	tex[3] = LoadTexture("Data/posz.jpg");
+	tex[4] = LoadTexture("Data/negx.jpg");
+	tex[5] = LoadTexture("Data/negz.jpg");
+
+	glPushMatrix();
+	glRotatef(th * 180 / 3.14, 0, 1, 0);
+	SkyBoxFunc();
+	glPopMatrix();
