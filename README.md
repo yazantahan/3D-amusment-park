@@ -35,7 +35,7 @@ This project is under the MIT License.
 
 If you have questions or feedback, you can contact me through my GitHub profile or email.
 
-- GitHub: [Your GitHub Profile](https://github.com/yazantahan)
+- GitHub: [yazantahan](https://github.com/yazantahan)
 - Email: thn.soperma@gmail.com
 
 Enjoy your time in the Simple 3D Amusement Park App!
